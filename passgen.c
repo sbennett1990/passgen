@@ -58,7 +58,7 @@ main(int argc, char * argv[]) {
 				length = strtonum(optarg, 0, INT_MAX, &errstr);
 				if (errstr)
 					errx(1, "length is %s: %s", errstr, optarg);
-			break;
+				break;
 			default:
 				usage();
 				break;
