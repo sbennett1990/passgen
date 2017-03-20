@@ -59,7 +59,9 @@ main(int argc, char * argv[]) {
 				if (errstr)
 					errx(1, "length is %s: %s", errstr, optarg);
 			break;
-			//default:
+			default:
+				usage();
+				break;
 		}
 	}
 	argc -= optind;
