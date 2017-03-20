@@ -110,6 +110,6 @@ printpass(unsigned char * p, size_t length) {
 
 void
 usage(void) {
-	fprintf(stderr, "usage: passgen [-l passlength]");
+	fprintf(stderr, "usage: passgen [-l passlength]\n");
 	exit(1);
 }
