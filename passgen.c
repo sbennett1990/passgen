@@ -77,7 +77,7 @@ main(int argc, char * argv[]) {
 	unsigned char p[length];
 	generate(p, length);
 	printpass(p, length);
-	printf("\n");
+	puts("");
 
 	return 0;
 }
