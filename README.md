@@ -1,7 +1,15 @@
 # passgen
 
-Simple, command line password generator utility. Can generate random passowrds up to
-50 characters long (although, that limit is arbitrary and easily changed).
+Simple, command line password generator utility. Prints random passwords up to 50
+characters long (although, that limit is arbitrary and easily changed).
+
+### usage
+
+```
+$ passgen [-l passlength]
+```
+The default minimum password length `passgen` prints out is 13 characters. Use `-l`
+to specify a different length, up to 50.
 
 ### why?
 
