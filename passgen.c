@@ -97,10 +97,12 @@ generate(unsigned char * p, size_t length) {
 				: arc4random_uniform(35);
 		p[i] = alpha[j];
 	}
+
+	/* randomize letter capitolization */
 	randomcase_buf(p, length);
 
-	/* randomly shuffle the characters zero times, once, or twice */
-	for (int i = 0; i < arc4random_uniform(3); i++) {
+	/* randomly shuffle the characters around at least once*/
+	for (int i = 0; i < arc4random_uniform(3) + 1; i++) {
 		shuffle(p, length);
 	}
 }
