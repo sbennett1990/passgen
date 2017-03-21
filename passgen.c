@@ -85,17 +85,12 @@ main(int argc, char * argv[]) {
 void
 generate(unsigned char * p, size_t length) {
 	size_t upperbound = sizeof(alpha);
-	u_int cutpoint = (UINT_MAX / 2);
 
 	for (size_t i = 0; i < length; i++) {
 		u_int j = arc4random_uniform(upperbound);
 		unsigned char c = alpha[j];
 
-		// random casing
-		if (isalpha(c) && arc4random() < cutpoint) {
-			c = toupper(c);
-		}
-		p[i] = c;
+		p[i] = randomcase(c);
 	}
 
 	shuffle(p, length);
