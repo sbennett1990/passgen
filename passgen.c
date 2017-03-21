@@ -93,9 +93,7 @@ generate(unsigned char * p, size_t length) {
 
 	for (size_t i = 0; i < length; i++) {
 		u_int j = arc4random_uniform(upperbound);
-		unsigned char c = alpha[j];
-
-		p[i] = randomcase(c);
+		p[i] = randomcase(alpha[j]);
 	}
 
 	/* randomly shuffle the characters zero times, once, or twice */
