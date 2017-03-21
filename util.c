@@ -16,16 +16,34 @@
 #include <sys/types.h>
 
 #include <ctype.h>
+#include <limits.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "util.h"
 
 unsigned char
 randomcase(unsigned char c) {
-	return 'a';
+	if (!isalpha(c)) {
+		return c;
+	}
+
+	const u_int cutpoint = (UINT_MAX / 2);
+	u_int rand = arc4random();
+
+	if (rand < cutpoint) {
+		// switch case
+		if (isupper(c)) {
+			return tolower(c);
+		}
+		if (islower(c)) {
+			return toupper(c);
+		}
+	}
+
+	return c;
 }
 
+/*
 void
 randomcase_0(unsigned char * arr, size_t length) {
 	unsigned char * bits[length / 8], *b;
@@ -43,6 +61,7 @@ randomcase_0(unsigned char * arr, size_t length) {
 		}
 	}
 }
+*/
 
 void
 shuffle(unsigned char * arr, size_t length) {
