@@ -1,7 +1,6 @@
-#CC = gcc
 CC = clang
 
-CFLAGS = -std=c99 -Wall#-Werror
+CFLAGS = -std=c99 -Wall
 
 all: passgen
 
