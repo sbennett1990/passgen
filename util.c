@@ -18,6 +18,7 @@
 #include <ctype.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "util.h"
 
@@ -46,6 +47,30 @@ randomcase(unsigned char c) {
 	}
 
 	return c;
+}
+
+/*
+ * Randomly switch the case of the letters in 'arr'. Any non-letter
+ * characters (as determined by isalpha(3)) are left unmodified.
+ */
+void
+randomcase_buf(unsigned char * arr, size_t length) {
+	unsigned char bits[length / 8], *b;
+	u_int i = 0;
+
+	arc4random_buf(bits, (length + 7) / 8);
+	b = bits;
+	while (*arr) {
+		if (isalpha(*arr)) {
+			*arr = (*b & (1 << i)) ? toupper(*arr) : tolower(*arr);
+		}
+		arr++;
+		i++;
+		if (i == 8) {
+			b++;
+			i = 0;
+		}
+	}
 }
 
 /*

@@ -19,6 +19,7 @@
 #include <stddef.h>
 
 unsigned char randomcase(unsigned char);
+void randomcase_buf(unsigned char *, size_t);
 void shuffle(unsigned char *, size_t);
 
 #endif /* UTIL_H */
