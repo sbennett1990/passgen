@@ -24,7 +24,7 @@
 
 #include "util.h"
 
-#define MIN_LENGTH 10
+#define MIN_LENGTH 13
 #define MAX_LENGTH 50
 
 static const char alpha[] = {
