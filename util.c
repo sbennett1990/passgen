@@ -43,26 +43,6 @@ randomcase(unsigned char c) {
 	return c;
 }
 
-/*
-void
-randomcase_0(unsigned char * arr, size_t length) {
-	unsigned char * bits[length / 8], *b;
-	u_int i = 0;
-
-	arc4random_buf(bits, (strnlen(arr, length) + 7) / 8);
-	b = bits;
-	while(*arr) {
-		*arr = (*b & (1 << i)) ? toupper(*arr) : tolower(*arr);
-		arr++;
-		i++;
-		if (i == 8) {
-			b++;
-			i = 0;
-		}
-	}
-}
-*/
-
 void
 shuffle(unsigned char * arr, size_t length) {
 	if (length < 2) {
