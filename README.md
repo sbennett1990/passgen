@@ -11,5 +11,9 @@ talk to the internet at all.
 
 ### build
 
+```
+$ make
+```
+
 Currently only builds on [OpenBSD](https://www.openbsd.org/), because what other platform
 would you trust to generate good random numbers?
