@@ -92,9 +92,12 @@ generate(unsigned char * p, size_t length) {
 	size_t upperbound = sizeof(alpha);
 
 	for (size_t i = 0; i < length; i++) {
-		u_int j = arc4random_uniform(upperbound);
-		p[i] = randomcase(alpha[j]);
+		u_int j = (i % 3 == 0)
+				? arc4random_uniform(upperbound)
+				: arc4random_uniform(35);
+		p[i] = alpha[j];
 	}
+	randomcase_buf(p, length);
 
 	/* randomly shuffle the characters zero times, once, or twice */
 	for (int i = 0; i < arc4random_uniform(3); i++) {
