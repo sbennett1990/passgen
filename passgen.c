@@ -40,7 +40,12 @@ static const char alpha[] = {
 
 static void generate(unsigned char *, size_t);
 static void printpass(unsigned char *, size_t);
-static void usage(void);
+
+static void
+usage(void) {
+	fprintf(stderr, "usage: passgen [-l passlength]\n");
+	exit(1);
+}
 
 int
 main(int argc, char * argv[]) {
@@ -101,10 +106,4 @@ printpass(unsigned char * p, size_t length) {
 	for (size_t i = 0; i < length; i++) {
 		putchar(p[i]);
 	}
-}
-
-void
-usage(void) {
-	fprintf(stderr, "usage: passgen [-l passlength]\n");
-	exit(1);
 }
