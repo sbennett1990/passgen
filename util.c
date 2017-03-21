@@ -21,6 +21,11 @@
 
 #include "util.h"
 
+/*
+ * Randomly switch the case of the given letter, 'c'. If c is not a
+ * letter (as determined by isalpha(3)), then c will be returned
+ * unmodified.
+ */
 unsigned char
 randomcase(unsigned char c) {
 	if (!isalpha(c)) {
@@ -43,6 +48,10 @@ randomcase(unsigned char c) {
 	return c;
 }
 
+/*
+ * Shuffle the contents of the array 'arr' by randomly switching the
+ * positions of the characters.
+ */
 void
 shuffle(unsigned char * arr, size_t length) {
 	if (length < 2) {
