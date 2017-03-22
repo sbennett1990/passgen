@@ -57,7 +57,7 @@ generate(unsigned char * p, size_t length) {
 }
 
 /*
- * Print the contents of the given string, up to length, follwed by
+ * Print the contents of the given string, up to length, followed by
  * a newline.
  */
 void
