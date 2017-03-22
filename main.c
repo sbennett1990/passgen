@@ -38,7 +38,7 @@ main(int argc, char * argv[]) {
 
 	size_t length = MIN_LENGTH;
 	u_int passnum = 1;
-	while ((c = getopt(argc, argv, "l:n")) != -1) {
+	while ((c = getopt(argc, argv, "l:n:")) != -1) {
 		switch (c) {
 			case 'l':
 				length = strtonum(optarg, MIN_LENGTH, MAX_LENGTH, &errstr);
