@@ -14,7 +14,7 @@ The default minimum password length that `passgen` prints out is 13 characters. 
 ### build
 
 ```
-$ make
+$ make && make install
 ```
 
 `passgen` currently only builds on [OpenBSD](https://www.openbsd.org/), because what
