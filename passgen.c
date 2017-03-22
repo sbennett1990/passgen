@@ -17,10 +17,56 @@
 
 #include <ctype.h>
 #include <limits.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "passgen.h"
+
+static const char alpha[] = {
+	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+	'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+	's', 't', 'u', 'v', 'w', 'x', 'y', 'z',		// alpha  :  0 - 25
+	'0', '1', '2', '3', '4', '5', '6', '7', '8',
+	'9',						// num    : 26 - 35
+	'@', '#', '$', '%', '^', '&', '*', '[', ']',
+	'~', '<', '>', '?', ':', ';', '"', '{', '}',
+	'+', '-', '='					// special: 36 - sizeof(alpha)
+};
+
+/*
+ * Generate random characters and fill the given buffer.
+ */
+void
+generate(unsigned char * p, size_t length) {
+	size_t upperbound = sizeof(alpha);
+
+	for (size_t i = 0; i < length; i++) {
+		u_int j = (i % 3 == 0)
+				? arc4random_uniform(upperbound)
+				: arc4random_uniform(35);
+		p[i] = alpha[j];
+	}
+
+	/* randomize letter capitolization */
+	randomcase_buf(p, length);
+
+	/* randomly shuffle the characters around at least once */
+	for (int i = 0; i < arc4random_uniform(3) + 1; i++) {
+		shuffle(p, length);
+	}
+}
+
+/*
+ * Print the contents of the given string, up to length, follwed by
+ * a newline.
+ */
+void
+printpass(unsigned char * p, size_t length) {
+	for (size_t i = 0; i < length; i++) {
+		putchar(p[i]);
+	}
+	puts("");
+}
 
 /*
  * Randomly switch the case of the given letter, 'c'. If c is not a

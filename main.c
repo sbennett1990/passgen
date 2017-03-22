@@ -13,9 +13,6 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <sys/types.h>
-
-#include <ctype.h>
 #include <err.h>
 #include <limits.h>
 #include <stdio.h>
@@ -27,19 +24,6 @@
 #define MIN_LENGTH 13
 #define MAX_LENGTH 50
 
-static const char alpha[] = {
-	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-	'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-	's', 't', 'u', 'v', 'w', 'x', 'y', 'z',		// alpha  :  0 - 25
-	'0', '1', '2', '3', '4', '5', '6', '7', '8',
-	'9',						// num    : 26 - 35
-	'@', '#', '$', '%', '^', '&', '*', '[', ']',
-	'~', '<', '>', '?', ':', ';', '"', '{', '}',
-	'+', '-', '='					// special: 36 - sizeof(alpha)
-};
-
-static void generate(unsigned char *, size_t);
-static void printpass(unsigned char *, size_t);
 static void usage(void);
 
 int
@@ -77,36 +61,8 @@ main(int argc, char * argv[]) {
 	unsigned char p[length];
 	generate(p, length);
 	printpass(p, length);
-	puts("");
 
 	return 0;
-}
-
-void
-generate(unsigned char * p, size_t length) {
-	size_t upperbound = sizeof(alpha);
-
-	for (size_t i = 0; i < length; i++) {
-		u_int j = (i % 3 == 0)
-				? arc4random_uniform(upperbound)
-				: arc4random_uniform(35);
-		p[i] = alpha[j];
-	}
-
-	/* randomize letter capitolization */
-	randomcase_buf(p, length);
-
-	/* randomly shuffle the characters around at least once */
-	for (int i = 0; i < arc4random_uniform(3) + 1; i++) {
-		shuffle(p, length);
-	}
-}
-
-void
-printpass(unsigned char * p, size_t length) {
-	for (size_t i = 0; i < length; i++) {
-		putchar(p[i]);
-	}
 }
 
 void

@@ -18,6 +18,8 @@
 
 #include <stddef.h>
 
+void generate(unsigned char *, size_t);
+void printpass(unsigned char *, size_t);
 unsigned char randomcase(unsigned char);
 void randomcase_buf(unsigned char *, size_t);
 void shuffle(unsigned char *, size_t);
