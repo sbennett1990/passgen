@@ -33,16 +33,16 @@ static const char alpha[] = {
 	'+', '-', '='					// special: 36 - sizeof(alpha)
 };
 
+#define UPPER_BOUND sizeof(alpha)
+
 /*
  * Generate random characters and fill the given buffer.
  */
 void
 generate(unsigned char * p, size_t length) {
-	size_t upperbound = sizeof(alpha);
-
 	for (size_t i = 0; i < length; i++) {
 		u_int j = (i % 3 == 0)
-				? arc4random_uniform(upperbound)
+				? arc4random_uniform(UPPER_BOUND)
 				: arc4random_uniform(35);
 		p[i] = alpha[j];
 	}
@@ -101,6 +101,10 @@ randomcase(unsigned char c) {
  */
 void
 randomcase_buf(unsigned char * arr, size_t length) {
+	if (length < 1) {
+		return;
+	}
+
 	unsigned char bits[length / 8], *b;
 	u_int i = 0;
 
