@@ -1,3 +1,4 @@
 passgen
 test-util
 *.o
+*.core
