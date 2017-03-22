@@ -62,7 +62,7 @@ main(int argc, char * argv[]) {
 
 	unsigned char p[length];
 
-	for (int i = 0; i < passnum; i++) {
+	for (u_int i = 0; i < passnum; i++) {
 		generate(p, length);
 		printpass(p, length);
 		explicit_bzero(p, length);
