@@ -39,8 +39,9 @@ main(int argc, char * argv[]) {
 		switch (c) {
 			case 'l':
 				length = strtonum(optarg, MIN_LENGTH, MAX_LENGTH, &errstr);
-				if (errstr)
+				if (errstr) {
 					errx(1, "length is %s: %s", errstr, optarg);
+				}
 				break;
 			default:
 				usage();
