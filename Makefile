@@ -14,6 +14,9 @@ passgen.o: passgen.h
 test-util: util.o test-util.c
 	$(CC) $(CFLAGS) test-util.c util.o -o test-util
 
+install:
+	install -S -m 0740 passgen ~/bin
+
 clean:
 	rm -f passgen.o
 	rm -f passgen
