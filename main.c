@@ -14,8 +14,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #include <err.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include "passgen.h"
@@ -35,12 +37,19 @@ main(int argc, char * argv[]) {
 	}
 
 	size_t length = MIN_LENGTH;
-	while ((c = getopt(argc, argv, "l:")) != -1) {
+	u_int passnum = 1;
+	while ((c = getopt(argc, argv, "l:n")) != -1) {
 		switch (c) {
 			case 'l':
 				length = strtonum(optarg, MIN_LENGTH, MAX_LENGTH, &errstr);
 				if (errstr) {
 					errx(1, "length is %s: %s", errstr, optarg);
+				}
+				break;
+			case 'n':
+				passnum = strtonum(optarg, 1, UINT_MAX, &errstr);
+				if (errstr) {
+					errx(1, "passnum is %s: %s", errstr, optarg);
 				}
 				break;
 			default:
@@ -52,14 +61,18 @@ main(int argc, char * argv[]) {
 	argv += optind;
 
 	unsigned char p[length];
-	generate(p, length);
-	printpass(p, length);
+
+	for (int i = 0; i < passnum; i++) {
+		generate(p, length);
+		printpass(p, length);
+		explicit_bzero(p, length);
+	}
 
 	return 0;
 }
 
 void
 usage(void) {
-	fprintf(stderr, "usage: passgen [-l passlength]\n");
+	fprintf(stderr, "usage: passgen [-l passlength] [-n passnum]\n");
 	exit(1);
 }
