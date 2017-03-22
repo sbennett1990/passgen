@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "util.h"
+#include "passgen.h"
 
 /*
  * Randomly switch the case of the given letter, 'c'. If c is not a

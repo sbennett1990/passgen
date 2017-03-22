@@ -13,8 +13,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef PASSGEN_H
+#define PASSGEN_H
 
 #include <stddef.h>
 
@@ -22,4 +22,4 @@ unsigned char randomcase(unsigned char);
 void randomcase_buf(unsigned char *, size_t);
 void shuffle(unsigned char *, size_t);
 
-#endif /* UTIL_H */
+#endif /* PASSGEN_H */
