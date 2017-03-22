@@ -39,7 +39,7 @@ main(int argc, char * argv[]) {
 	while ((c = getopt(argc, argv, "l:")) != -1) {
 		switch (c) {
 			case 'l':
-				length = strtonum(optarg, 0, INT_MAX, &errstr);
+				length = strtonum(optarg, MIN_LENGTH, MAX_LENGTH, &errstr);
 				if (errstr)
 					errx(1, "length is %s: %s", errstr, optarg);
 				break;
@@ -50,13 +50,6 @@ main(int argc, char * argv[]) {
 	}
 	argc -= optind;
 	argv += optind;
-
-	if (length < MIN_LENGTH) {
-		err(1, "can't generate a password less than %d", MIN_LENGTH);
-	}
-	if (length > MAX_LENGTH) {
-		err(1, "max password length is %d", MAX_LENGTH);
-	}
 
 	unsigned char p[length];
 	generate(p, length);
