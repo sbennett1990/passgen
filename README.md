@@ -6,10 +6,13 @@ characters long (although, that limit is arbitrary and easily changed).
 ### usage
 
 ```
-$ passgen [-l passlength]
+$ passgen [-l passlength] [-n passnum]
 ```
 The default minimum password length that `passgen` prints out is 13 characters. Use
 `-l` to specify a different length, up to 50.
+
+`passgen` only generates 1 password by default. Use `-n` to generate 'n' number of
+passwords, one per line.
 
 ### build
 
