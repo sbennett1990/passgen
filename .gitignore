@@ -1,5 +1,6 @@
 passgen
 test-util
+SHA256
 *.o
 *.tgz
 *.core
