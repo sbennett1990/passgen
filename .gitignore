@@ -1,4 +1,5 @@
 passgen
 test-util
 *.o
+*.tgz
 *.core
