@@ -30,7 +30,7 @@ static const char alpha[] = {
 	'9',						// num    : 26 - 35
 	'@', '#', '$', '%', '^', '&', '*', '[', ']',
 	'~', '<', '>', '?', ':', ';', '"', '{', '}',
-	'+', '-', '='					// special: 36 - sizeof(alpha)
+	'+', '-', '=', '/'				// special: 36 - sizeof(alpha)
 };
 
 #define UPPER_BOUND sizeof(alpha)
