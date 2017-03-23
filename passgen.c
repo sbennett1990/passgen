@@ -36,34 +36,34 @@ static const char alpha[] = {
 #define UPPER_BOUND sizeof(alpha)
 
 /*
- * Generate random characters and fill the given buffer.
+ * Write 'length' randomly generated characters to the string 'arr'.
  */
 void
-generate(unsigned char * p, size_t length) {
+generate(unsigned char * arr, size_t length) {
 	for (size_t i = 0; i < length; i++) {
 		u_int j = (i % 3 == 0)
 				? arc4random_uniform(UPPER_BOUND)
 				: arc4random_uniform(35);
-		p[i] = alpha[j];
+		arr[i] = alpha[j];
 	}
 
 	/* randomize letter capitolization */
-	randomcase_buf(p, length);
+	randomcase_buf(arr, length);
 
 	/* randomly shuffle the characters around at least once */
 	for (int i = 0; i < arc4random_uniform(3) + 1; i++) {
-		shuffle(p, length);
+		shuffle(arr, length);
 	}
 }
 
 /*
- * Print the contents of the given string, up to length, followed by
- * a newline.
+ * Print the contents of the string 'arr', up to 'length', followed
+ * by a newline.
  */
 void
-printpass(unsigned char * p, size_t length) {
+printpass(unsigned char * arr, size_t length) {
 	for (size_t i = 0; i < length; i++) {
-		putchar(p[i]);
+		putchar(arr[i]);
 	}
 	puts("");
 }
@@ -124,7 +124,7 @@ randomcase_buf(unsigned char * arr, size_t length) {
 }
 
 /*
- * Shuffle the contents of the array 'arr' by randomly switching the
+ * Shuffle the contents of the string 'arr' by randomly switching the
  * positions of the characters.
  */
 void
