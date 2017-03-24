@@ -62,6 +62,10 @@ main(int argc, char * argv[]) {
 	argc -= optind;
 	argv += optind;
 
+	if (argc > 1) {
+		usage();
+	}
+
 	unsigned char p[length];
 
 	for (u_int i = 0; i < passnum; i++) {
