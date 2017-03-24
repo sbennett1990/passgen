@@ -20,12 +20,12 @@ install:
 	install -S -m 0740 passgen ~/bin
 
 release:
-	tar evczf passgen.tgz *.c *.h Makefile passgen.1 README.md LICENSE
-	sha256 -h SHA256 passgen.tgz
+	tar evczf passgen-$(V).tgz *.c *.h Makefile passgen.1 README.md LICENSE
+	sha256 -h SHA256 passgen-$(V).tgz
 
 clean:
-	rm -f passgen.o
+	rm -f *.o
 	rm -f passgen
 	rm -f test-util
-	rm -f passgen.tgz
+	rm -f passgen-$(V).tgz
 	rm -f SHA256
