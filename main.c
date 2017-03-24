@@ -24,9 +24,12 @@
 
 #include "passgen.h"
 
+#define HAVE_PLEDGE 1
 #define MIN_LENGTH 13
 #define MAX_LENGTH 50
 
+static void sandbox_pre(void);
+static void sandbox_post(void);
 static void usage(void);
 
 int
@@ -34,9 +37,7 @@ main(int argc, char * argv[]) {
 	int c;
 	const char * errstr;
 
-	if (pledge("stdio", NULL) == -1) {
-		err(1, "pledge");
-	}
+	sandbox_pre();
 
 	size_t length = MIN_LENGTH;
 	u_int passnum = 1;
@@ -66,6 +67,8 @@ main(int argc, char * argv[]) {
 		usage();
 	}
 
+	sandbox_post();
+
 	unsigned char p[length];
 
 	for (u_int i = 0; i < passnum; i++) {
@@ -82,3 +85,33 @@ usage(void) {
 	fprintf(stderr, "usage: passgen [-l passlength] [-n passnum]\n");
 	exit(1);
 }
+
+#if HAVE_PLEDGE
+
+void
+sandbox_pre(void) {
+	if (pledge("stdio", NULL) == -1) {
+		err(1, "pledge");
+	}
+}
+
+void
+sandbox_post(void) {
+	/* Do nothing */
+}
+
+#else	/* No sandbox */
+
+#warning Compiling without sandbox support.
+
+void
+sandbox_pre(void) {
+	/* Do nothing */
+}
+
+void
+sandbox_post(void) {
+	/* Do nothing */
+}
+
+#endif
