@@ -1,6 +1,7 @@
-CC      = clang
-CFLAGS  = -std=c99 -Wall -pedantic
-CFLAGS += -O2 -pipe
+V =		0.2
+CC =		clang
+CFLAGS =	-std=c99 -Wall -pedantic
+CFLAGS +=	-O2 -pipe
 
 all: passgen
 
