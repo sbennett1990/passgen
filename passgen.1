@@ -28,9 +28,17 @@
 The
 .Nm
 utility prints a number of random passwords up to 50 characters long.
-.\" TODO: find the macro to create a new paragraph right here
+.Pp
 The options are as follows:
-.Sh EXAMPLES
+.Bl -tag -width itis-thirteen
+.It Fl l Ar passlength
+Length of the generated password. The default (and minimum) is 13.
+.It Fl n Ar passnum
+Number of passwords to generate, one per line.
+.Nm
+will only generate 1 password by default.
+.El
+.Sh EXAMPLE
 .\"
 .Sh EXIT STATUS
 .Nm
