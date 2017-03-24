@@ -50,7 +50,9 @@ was written by
 .Mt scottb@fastmail.com .
 .Sh CAVEATS
 .Nm
-only compiles on
-.Ox 5.9
-or higher, because it uses
-.Xr pledge 3 .
+will only compile on
+.Ox
+because it relies on
+.Xr arc4random_uniform 3 ,
+.Xr strtonum 3 , and
+.Xr explicit_bzero 3 .
