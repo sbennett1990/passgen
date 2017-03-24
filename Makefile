@@ -8,13 +8,13 @@ all: passgen
 tests: test-util
 
 passgen: passgen.o main.c
-	$(CC) $(CFLAGS) main.c passgen.o -o passgen
+	$(CC) $(CFLAGS) main.c passgen.o -o $@
 
 passgen.o: passgen.h
-	$(CC) $(CFLAGS) -c passgen.c -o passgen.o
+	$(CC) $(CFLAGS) -c passgen.c -o $@
 
 test-util: util.o test-util.c
-	$(CC) $(CFLAGS) test-util.c util.o -o test-util
+	$(CC) $(CFLAGS) test-util.c util.o -o $@
 
 install:
 	install -S -m 0740 passgen ~/bin
