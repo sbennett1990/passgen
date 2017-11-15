@@ -1,4 +1,6 @@
-module Password = struct
+(* module Password = struct *)
+	type t = char list
+
 	(* ASCII Character Codes for Passwords *)
 	let character_codes = [
 		(* Numbers *)
@@ -51,4 +53,5 @@ module Password = struct
 
 	let print_password passwd =
 		let () = List.iter (printf "%a") (passwd@['\n']);
-end
+
+(* end *)
