@@ -18,7 +18,7 @@
 
 	let upper_bound = List.length character_codes
 
-	let random_ascii_code =
+	let random_ascii_code () =
 		let i = Random.int upper_bound in
 		List.nth character_codes i
 
@@ -42,7 +42,7 @@
 			if n < 1 then
 				list
 			else
-				let c = Char.chr random_ascii_code in
+				let c = Char.chr (random_ascii_code ()) in
 				aux (c::list) (n - 1)
 		in
 		if size < 1 then
@@ -52,6 +52,8 @@
 			List.map random_case passwd
 
 	let print_password passwd =
-		let () = List.iter (printf "%a") (passwd@['\n']);
+		List.iter print_char passwd;
+		print_newline ();
+		()
 
 (* end *)
