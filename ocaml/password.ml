@@ -18,9 +18,9 @@
 
 	let upper_bound = List.length character_codes
 
-	let random_ascii_code () =
+	let random_character () =
 		let i = Random.int upper_bound in
-		List.nth character_codes i
+		Char.chr (List.nth character_codes i)
 
 	let valid_characters =
 		List.map Char.chr character_codes
@@ -43,7 +43,7 @@
 			if n < 1 then
 				list
 			else
-				let c = Char.chr (random_ascii_code ()) in
+				let c = random_character () in
 				create (c::list) (n - 1)
 		in
 		if size < 1 then
