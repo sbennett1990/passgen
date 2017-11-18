@@ -33,22 +33,23 @@
 			Char.uppercase_ascii c
 
 	let random_case c =
-		match Random.bool () with
-		| true -> switch_case c
-		| false -> c
+		if Random.bool () then
+			switch_case c
+		else
+			c
 
 	let generate_password size =
-		let rec aux list n =
+		let rec create list n =
 			if n < 1 then
 				list
 			else
 				let c = Char.chr (random_ascii_code ()) in
-				aux (c::list) (n - 1)
+				create (c::list) (n - 1)
 		in
 		if size < 1 then
 			[]
 		else
-			let passwd = aux [] size in
+			let passwd = create [] size in
 			List.map random_case passwd
 
 	let print_password passwd =
