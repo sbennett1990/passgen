@@ -1,7 +1,18 @@
-(**
- * Create a password of specified length, filled with random ASCII characters
- *)
-val generate_password : int -> char list
+module Password : sig
+	type t
 
-(** Print the password to stdout, followed by a newline *)
-val print_password : char list -> ()
+	(**
+	 * Return the list of valid password characters
+	 *)
+	val valid_characters : char list
+
+	(**
+	 * Create a random password of the specified length
+	 *)
+	val generate_password : int -> t
+
+	(**
+	 * Print the password to stdout, followed by a newline
+	 *)
+	val print_password : t -> ()
+end
