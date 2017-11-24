@@ -54,6 +54,5 @@ module Password = struct
 
 	let print_password passwd =
 		List.iter print_char passwd;
-		print_newline ();
-		()
+		print_newline ()
 end
